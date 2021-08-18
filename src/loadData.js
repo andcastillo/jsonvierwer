@@ -6,7 +6,7 @@ const loadData = async function () {
     const response = await fetch("data.json");
     dataJson = await response.json();
   } else {
-    const response = await fetch("data.json"); // "https://api.publicapis.org/entries");
+    const response = await fetch("https://api.publicapis.org/entries");
     dataJson = await response.json();
   }
 
