@@ -45,7 +45,7 @@ const TableC = ({ columns, data, renderRowSubComponent }) => {
   );
 
   const generateSortingIndicator = (column) => {
-    return column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : "🔽🔼";
+    return column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : " 🔽🔼";
   };
 
   const onChangeInSelect = (event) => {
