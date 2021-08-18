@@ -15,9 +15,13 @@ function App() {
 
   useEffect(() => {
     const doFetch = async () => {
-      const data = await loadData();
-      setData(data.entries);
-      setColumns(data.columns);
+      try {
+        const data = await loadData();
+        setData(data.entries);
+        setColumns(data.columns);
+      } catch (e) {
+        console.error("Problem in data ingestion " + e);
+      }
     };
     doFetch();
   }, []);

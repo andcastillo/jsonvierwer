@@ -2,7 +2,7 @@ import { Row, Col, Button, Input, CustomInput } from "reactstrap";
 import PropTypes from "prop-types";
 
 /**
- * Page Controls for the table
+ * Page Controls for TableC
  * @returns Container
  */
 const PageControlsRow = (props) => {
@@ -24,6 +24,7 @@ const PageControlsRow = (props) => {
   // |<<|<| Page 1 of 91 |1| Show 10 ⌵| > | >> |
   return (
     <Row
+      id={'pagecontrolsrow'}
       style={{
         maxWidth: 1000,
         margin: "0 auto",
@@ -63,7 +64,12 @@ const PageControlsRow = (props) => {
         />
       </Col>
       <Col md={2}>
-        <CustomInput type="select" value={pageSize} onChange={onChangeInSelect}>
+        <CustomInput
+          id="cu"
+          type="select"
+          value={pageSize}
+          onChange={onChangeInSelect}
+        >
           &gt;
           {[10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
@@ -73,7 +79,7 @@ const PageControlsRow = (props) => {
         </CustomInput>
       </Col>
       <Col md={3}>
-        <Button color="primary" onClick={nextPage} disabled={!canNextPage}>
+        <Button id="nextbutton" color="primary" onClick={nextPage} disabled={!canNextPage}>
           {">"}
         </Button>
         <Button
