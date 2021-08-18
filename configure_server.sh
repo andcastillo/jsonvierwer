@@ -1,3 +1,6 @@
+#!/bin/bash
+# Execute this script on a new AWS VM to prepare the instance for jsonviewer. 
+
 sudo yum update -y
 sudo amazon-linux-extras install docker
 sudo yum install docker
