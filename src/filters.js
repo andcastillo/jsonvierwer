@@ -61,23 +61,23 @@ const SelectColumnFilter = ({
 Filter.propTypes = {
   column: PropTypes.any,
   "column.canFilter": PropTypes.bool,
-  "column.render": PropTypes.function,
+  "column.render": PropTypes.func,
 };
 
 DefaultColumnFilter.propTypes = {
   column: PropTypes.any,
-  "column.filterValue": PropTypes.function,
-  "column.setFilter": PropTypes.function,
+  "column.filterValue": PropTypes.func,
+  "column.setFilter": PropTypes.func,
   "column.preFilteredRows": PropTypes.any,
-  "column.preFilteredRows.forEach": PropTypes.function,
+  "column.preFilteredRows.forEach": PropTypes.func,
 };
 
 SelectColumnFilter.propTypes = {
   column: PropTypes.any,
-  "column.filterValue": PropTypes.function,
-  "column.setFilter": PropTypes.function,
+  "column.filterValue": PropTypes.func,
+  "column.setFilter": PropTypes.func,
   "column.preFilteredRows": PropTypes.any,
-  "column.preFilteredRows.forEach": PropTypes.function,
+  "column.preFilteredRows.forEach": PropTypes.func,
   "column.id": PropTypes.any,
 };
 

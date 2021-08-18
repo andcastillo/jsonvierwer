@@ -116,7 +116,7 @@ const TableC = ({ columns, data, renderRowSubComponent }) => {
 TableC.propTypes = {
   columns: PropTypes.any,
   data: PropTypes.any,
-  renderRowSubComponent: PropTypes.function,
+  renderRowSubComponent: PropTypes.func,
 };
 
 export default TableC;

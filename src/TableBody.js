@@ -40,8 +40,8 @@ const TableBody = (props) => {
 
 TableBody.propTypes = {
   functions: PropTypes.any,
-  "functions.getTableBodyProps": PropTypes.function,
-  "functions.prepareRow": PropTypes.function,
+  "functions.getTableBodyProps": PropTypes.func,
+  "functions.prepareRow": PropTypes.func,
   value: PropTypes.any,
   "value.page": PropTypes.number,
   "value.visibleColumns": PropTypes.any,

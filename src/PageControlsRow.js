@@ -100,11 +100,11 @@ PageControlsRow.propTypes = {
   "props.value.pageSize": PropTypes.number,
   "props.value.canNextPage": PropTypes.bool,
   "props.value.pageCount": PropTypes.number,
-  "props.functions.gotoPage": PropTypes.functions,
-  "props.functions.onChangeInSelect": PropTypes.functions,
-  "props.functions.previousPage": PropTypes.function,
-  "props.functions.onChangeInInput": PropTypes.function,
-  "props.functions.nextPage": PropTypes.function,
+  "props.functions.gotoPage": PropTypes.func,
+  "props.functions.onChangeInSelect": PropTypes.func,
+  "props.functions.previousPage": PropTypes.func,
+  "props.functions.onChangeInInput": PropTypes.func,
+  "props.functions.nextPage": PropTypes.func,
 };
 
 export default PageControlsRow;
