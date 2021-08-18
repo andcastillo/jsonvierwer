@@ -1,13 +1,18 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+
 import {
   useTable,
   useSortBy,
   useFilters,
   useExpanded,
   usePagination,
-} from 'react-table';
-import { Table, Row, Col, Button, Input, CustomInput } from 'reactstrap';
-import { Filter, DefaultColumnFilter } from './filters';
+} from "react-table";
+
+import { Table } from "reactstrap";
+import { Filter, DefaultColumnFilter } from "./filters";
+import PageControlsRow from "./PageControlsRow";
+import TableBody from "./TableBody";
 
 const TableC = ({ columns, data, renderRowSubComponent }) => {
   const {
@@ -40,7 +45,7 @@ const TableC = ({ columns, data, renderRowSubComponent }) => {
   );
 
   const generateSortingIndicator = (column) => {
-    return column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : '';
+    return column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : "🔽🔼";
   };
 
   const onChangeInSelect = (event) => {
@@ -56,12 +61,15 @@ const TableC = ({ columns, data, renderRowSubComponent }) => {
     <Fragment>
       <Table bordered hover {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>
+          {headerGroups.map((headerGroup, indexR) => (
+            <tr key={"row_" + indexR} {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, indexC) => (
+                <th
+                  key={"col_" + indexR + "_" + indexC}
+                  {...column.getHeaderProps()}
+                >
                   <div {...column.getSortByToggleProps()}>
-                    {column.render('Header')}
+                    {column.render("Header")}
                     {generateSortingIndicator(column)}
                   </div>
                   <Filter column={column} />
@@ -70,94 +78,45 @@ const TableC = ({ columns, data, renderRowSubComponent }) => {
             </tr>
           ))}
         </thead>
-
-        <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
-            prepareRow(row);
-            return (
-              <Fragment key={row.getRowProps().key}>
-                <tr>
-                  {row.cells.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                    );
-                  })}
-                </tr>
-                {row.isExpanded && (
-                  <tr>
-                    <td colSpan={visibleColumns.length}>
-                      {renderRowSubComponent(row)}
-                    </td>
-                  </tr>
-                )}
-              </Fragment>
-            );
-          })}
-        </tbody>
+        <TableBody
+          value={{
+            page,
+            visibleColumns,
+          }}
+          functions={{
+            getTableBodyProps,
+            prepareRow,
+            renderRowSubComponent,
+          }}
+        />
       </Table>
 
-      <Row style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
-        <Col md={3}>
-          <Button
-            color='primary'
-            onClick={() => gotoPage(0)}
-            disabled={!canPreviousPage}
-          >
-            {'<<'}
-          </Button>
-          <Button
-            color='primary'
-            onClick={previousPage}
-            disabled={!canPreviousPage}
-          >
-            {'<'}
-          </Button>
-        </Col>
-        <Col md={2} style={{ marginTop: 7 }}>
-          Page{' '}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>
-        </Col>
-        <Col md={2}>
-          <Input
-            type='number'
-            min={1}
-            style={{ width: 70 }}
-            max={pageOptions.length}
-            defaultValue={pageIndex + 1}
-            onChange={onChangeInInput}
-          />
-        </Col>
-        <Col md={2}>
-          <CustomInput
-            type='select'
-            value={pageSize}
-            onChange={onChangeInSelect}
-          >
-            >
-            {[10, 20, 30, 40, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </CustomInput>
-        </Col>
-        <Col md={3}>
-          <Button color='primary' onClick={nextPage} disabled={!canNextPage}>
-            {'>'}
-          </Button>
-          <Button
-            color='primary'
-            onClick={() => gotoPage(pageCount - 1)}
-            disabled={!canNextPage}
-          >
-            {'>>'}
-          </Button>
-        </Col>
-      </Row>
+      <PageControlsRow
+        value={{
+          canPreviousPage,
+          pageOptions,
+          pageIndex,
+          pageSize,
+          nextPage,
+          canNextPage,
+          pageCount,
+        }}
+        functions={{
+          gotoPage,
+          onChangeInInput,
+          onChangeInSelect,
+          previousPage,
+          nextPage,
+        }}
+      />
     </Fragment>
   );
 };
-  
-  export default TableC
+
+TableC.propTypes = {
+  columns: PropTypes.any,
+  data: PropTypes.any,
+  renderRowSubComponent: PropTypes.function,
+};
+
+export default TableC;
