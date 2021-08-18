@@ -24,7 +24,7 @@ const PageControlsRow = (props) => {
   // |<<|<| Page 1 of 91 |1| Show 10 ⌵| > | >> |
   return (
     <Row
-      id={'pagecontrolsrow'}
+      id={"pagecontrolsrow"}
       style={{
         maxWidth: 1000,
         margin: "0 auto",
@@ -79,7 +79,12 @@ const PageControlsRow = (props) => {
         </CustomInput>
       </Col>
       <Col md={3}>
-        <Button id="nextbutton" color="primary" onClick={nextPage} disabled={!canNextPage}>
+        <Button
+          id="nextbutton"
+          color="primary"
+          onClick={nextPage}
+          disabled={!canNextPage}
+        >
           {">"}
         </Button>
         <Button

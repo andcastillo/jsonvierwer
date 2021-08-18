@@ -1,4 +1,3 @@
-import fs from 'fs'
 const MODE = process.env.NODE_ENV || "";
 const url = "https://api.publicapis.org/entries";
 
@@ -9,8 +8,7 @@ const loadData = async function () {
   console.log(`Working in ${MODE} mode `);
   try {
     if (MODE === "test") {
-      // dataJson = await fetch("data.json");
-      dataJson = { json: async () => JSON.parse(fs.readFileSync("public/data.json")) };
+      dataJson = await fetch("data.json");
     } else {
       dataJson = await fetch(url);
     }

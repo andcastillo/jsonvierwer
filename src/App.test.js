@@ -24,7 +24,7 @@ afterEach(() => {
   container = null;
 });
 
-test('renders Body', async () => {
+test("renders Body", async () => {
   let linkElement = {};
   render(<App />, container);
   await sleep(2000);
@@ -32,7 +32,7 @@ test('renders Body', async () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('renders PageControls working', async () => {
+test("renders PageControls working", async () => {
   let linkElement = {};
   render(<App />, container);
   await sleep(2000);
